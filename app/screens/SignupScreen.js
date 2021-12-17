@@ -1,20 +1,46 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet, Image } from "react-native";
+import { View, Text, Button, StyleSheet, Image, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import SocialButton from "../components/SocialButton";
+import { registration } from "../firebase/useFirebase";
 
 function SignupScreen({ navigation }) {
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
-	const [confirmPassword, setConfirmPassword] = useState();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+
+	const emptyState = () => {
+		setEmail("");
+		setPassword("");
+		setConfirmPassword("");
+	};
+
+	const handlePress = () => {
+		console.log(email);
+		if (!email) {
+			Alert.alert("Email field is required.");
+		} else if (!password) {
+			Alert.alert("Password field is required.");
+		} else if (!confirmPassword) {
+			setPassword("");
+			Alert.alert("Confirm password field is required.");
+		} else if (password !== confirmPassword) {
+			Alert.alert("Password does not match!");
+		} else {
+			registration(email, password);
+			navigation.navigate("Loading");
+			emptyState();
+		}
+	};
 	return (
 		<View style={styles.container}>
 			<Text style={styles.text}>Create Account</Text>
 			<FormInput
 				placeholderText='Email'
-				onChange={(userEmail) => {
+				onChangeText={(userEmail) => {
+					console.log(userEmail);
 					setEmail(userEmail);
 				}}
 				iconType='user'
@@ -24,7 +50,8 @@ function SignupScreen({ navigation }) {
 			/>
 			<FormInput
 				placeholderText='Password'
-				onChange={(userPassword) => {
+				onChangeText={(userPassword) => {
+					console.log(userPassword);
 					setPassword(userPassword);
 				}}
 				iconType='lock'
@@ -32,13 +59,14 @@ function SignupScreen({ navigation }) {
 			/>
 			<FormInput
 				placeholderText='Confirm Password'
-				onChange={(userPassword) => {
+				onChangeText={(userPassword) => {
+					console.log(userPassword);
 					setConfirmPassword(userPassword);
 				}}
 				iconType='lock'
 				secureTextEntry={true}
 			/>
-			<FormButton buttonTitle='Sign Up' onPress={() => alert("Sign Up Clicked")} />
+			<FormButton buttonTitle='Sign Up' onPress={() => handlePress()} />
 
 			<TouchableOpacity style={styles.optionText} onPress={() => navigation.navigate("Signup")}>
 				<Text style={styles.navButtonText}> Have an Account? Sign In</Text>
