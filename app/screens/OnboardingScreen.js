@@ -30,7 +30,7 @@ function OnboardingScreen({ navigation }) {
 			onDone={() => navigation.navigate("Login")}
 			pages={[
 				{
-					backgroundColor: "#fff",
+					backgroundColor: "#E3F6E6",
 					image: (
 						<Image
 							style={{ marginTop: -100, marginBottom: -50, height: 300, width: 300 }}
@@ -38,8 +38,8 @@ function OnboardingScreen({ navigation }) {
 							source={require("../assets/onBoarding_1.png")}
 						/>
 					),
-					title: "Connect to the World",
-					subtitle: "A New Way To Connect With The World",
+					title: "Take a Picture!!",
+					subtitle: "The thing you want to remember...",
 				},
 				{
 					backgroundColor: "#fff",
@@ -50,8 +50,8 @@ function OnboardingScreen({ navigation }) {
 							source={require("../assets/onBoarding_2.png")}
 						/>
 					),
-					title: "Share Your Favorites",
-					subtitle: "Share Your Thoughts With Similar Kind of People",
+					title: "Add a Note!",
+					subtitle: "As Simple as that",
 				},
 				{
 					backgroundColor: "#fff",
@@ -62,20 +62,20 @@ function OnboardingScreen({ navigation }) {
 							source={require("../assets/onBoarding_3.png")}
 						/>
 					),
-					title: "Become The Star",
-					subtitle: "Let The Spot Light Capture You",
+					title: "Easy to find timeline.",
+					subtitle: "A chronological timeline of the day",
 				},
 				{
 					backgroundColor: "#fff",
 					image: (
 						<Image
-							style={{ marginTop: -200, marginBottom: -50, height: 300, width: 300 }}
+							style={{ marginTop: -100, marginBottom: -50, height: 300, width: 300 }}
 							// @ts-ignore
 							source={require("../assets/onBoarding_4.png")}
 						/>
 					),
-					title: "Become The Star",
-					subtitle: "Let The Spot Light Capture You",
+					title: "Your Photographic Memory",
+					subtitle: "Now you everyone will have a photographic memory.",
 				},
 			]}
 		/>
