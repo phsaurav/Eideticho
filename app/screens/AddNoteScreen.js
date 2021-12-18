@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { AuthContext } from "../navigation/AuthProvider";
 
-const HomeScreen = () => {
+const AddNoteScreen = () => {
 	return (
 		<View style={styles.container}>
-			<Text>Welcome Home</Text>
+			<Text>Add Note</Text>
 		</View>
 	);
 };
 
-export default HomeScreen;
+export default AddNoteScreen;
 
 const styles = StyleSheet.create({
 	container: {
