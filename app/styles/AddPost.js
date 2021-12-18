@@ -39,7 +39,6 @@ export const SubmitBtn = styled.TouchableOpacity`
 
 export const SubmitBtnText = styled.Text`
 	font-size: 18px;
-	font-family: "Lato-Bold";
 	font-weight: bold;
 	color: #2e64e5;
 `;

@@ -1,40 +1,61 @@
 import React, { useState } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import { InputField, InputWrapper } from "../styles/AddPost";
+import { Platform, StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { AddImage, InputField, InputWrapper, SubmitBtn, SubmitBtnText, StatusWrapper } from "../styles/AddPost";
 import ActionButton from "react-native-action-button";
 import Icon from "react-native-vector-icons/Ionicons";
-import ImagePicker from "react-native-image-crop-picker";
+import * as ImagePicker from "expo-image-picker";
 
 const AddNoteScreen = () => {
 	const [image, setImage] = useState(null);
+	const [uploading, setUploading] = useState(false);
+	const [transferred, setTransferred] = useState(0);
+	const [status, requestPermission] = ImagePicker.useCameraPermissions();
 
-	const takePhotoFromCamera = () => {
-		ImagePicker.openCamera({
-			width: 1200,
-			height: 780,
-			cropping: true,
-		}).then((image) => {
-			console.log(image);
-			const imageUri = Platform.OS === "ios" ? image.sourceURL : image.path;
-			setImage(imageUri);
-		});
+	const takePhotoFromCamera = async () => {
+		const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+		if (granted) {
+			let result = await ImagePicker.launchCameraAsync({
+				mediaTypes: ImagePicker.MediaTypeOptions.Images,
+				allowsEditing: true,
+				aspect: [4, 3],
+				quality: 0.5,
+			});
+			console.log(result);
+
+			if (!result.cancelled) {
+				setImage(result?.uri);
+			}
+		}
 	};
 
-	const choosePhotoFromLibrary = () => {
-		ImagePicker.openPicker({
-			width: 1200,
-			height: 780,
-			cropping: true,
-		}).then((image) => {
-			console.log(image);
-			const imageUri = Platform.OS === "ios" ? image.sourceURL : image.path;
-			setImage(imageUri);
+	const choosePhotoFromLibrary = async () => {
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.All,
+			allowsEditing: true,
+			aspect: [4, 3],
+			quality: 0.5,
 		});
+		console.log(result);
+
+		if (!result.cancelled) {
+			setImage(result?.uri);
+		}
 	};
 	return (
 		<View style={styles.container}>
 			<InputWrapper>
+				{image != null ? <AddImage source={{ uri: image }} /> : null}
 				<InputField placeholder='Keep in memory!!' multiline numberofLines={3} />
+				{uploading ? (
+					<StatusWrapper>
+						<Text>{transferred} % Completed!</Text>
+						<ActivityIndicator size='large' color='#0000ff' />
+					</StatusWrapper>
+				) : (
+					<SubmitBtn>
+						<SubmitBtnText>Post</SubmitBtnText>
+					</SubmitBtn>
+				)}
 			</InputWrapper>
 			<ActionButton buttonColor='#2e64e5'>
 				<ActionButton.Item buttonColor='#9b59b6' title='Take Photo' onPress={takePhotoFromCamera}>
