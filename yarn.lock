@@ -2854,6 +2854,14 @@ expo-font@~10.0.3:
     expo-modules-core "~0.4.4"
     fontfaceobserver "^2.1.0"
 
+expo-google-sign-in@~10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/expo-google-sign-in/-/expo-google-sign-in-10.0.3.tgz#3b2ef6de8bf119802225ef1f63151bb77df0621a"
+  integrity sha512-hooZHs2UpbOrwtwsgpU/i1Ic06tizx+K8GLbL0lKuLh+Cos53vSYP5HQEZs/2sy2p897XwdEX4ADj+ZyKIdFJw==
+  dependencies:
+    expo-modules-core "~0.4.4"
+    invariant "^2.2.4"
+
 expo-keep-awake@~10.0.0:
   version "10.0.0"
   resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-10.0.0.tgz"

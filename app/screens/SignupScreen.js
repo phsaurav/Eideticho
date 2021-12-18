@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Button, StyleSheet, Image, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import SocialButton from "../components/SocialButton";
-import { registration } from "../firebase/useFirebase";
+import { AuthContext } from "../navigation/AuthProvider";
 
 function SignupScreen({ navigation }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+
+	const { register } = useContext(AuthContext);
 
 	const emptyState = () => {
 		setEmail("");
@@ -29,8 +31,7 @@ function SignupScreen({ navigation }) {
 		} else if (password !== confirmPassword) {
 			Alert.alert("Password does not match!");
 		} else {
-			registration(email, password);
-			navigation.navigate("Loading");
+			register(email, password);
 			emptyState();
 		}
 	};
@@ -40,7 +41,6 @@ function SignupScreen({ navigation }) {
 			<FormInput
 				placeholderText='Email'
 				onChangeText={(userEmail) => {
-					console.log(userEmail);
 					setEmail(userEmail);
 				}}
 				iconType='user'
@@ -51,7 +51,6 @@ function SignupScreen({ navigation }) {
 			<FormInput
 				placeholderText='Password'
 				onChangeText={(userPassword) => {
-					console.log(userPassword);
 					setPassword(userPassword);
 				}}
 				iconType='lock'
@@ -60,7 +59,6 @@ function SignupScreen({ navigation }) {
 			<FormInput
 				placeholderText='Confirm Password'
 				onChangeText={(userPassword) => {
-					console.log(userPassword);
 					setConfirmPassword(userPassword);
 				}}
 				iconType='lock'

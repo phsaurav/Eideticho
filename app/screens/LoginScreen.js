@@ -1,19 +1,44 @@
-import React, { useState } from "react";
-import { View, Text, Button, StyleSheet, Image } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, Alert, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import SocialButton from "../components/SocialButton";
+import { AuthContext } from "../navigation/AuthProvider";
 
 function LoginScreen({ navigation }) {
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const { login } = useContext(AuthContext);
+
+	const emptyState = () => {
+		setEmail("");
+		setPassword("");
+	};
+
+	const handlePress = () => {
+		console.log(email);
+		if (!email) {
+			Alert.alert("Email field is required.");
+		} else if (!password) {
+			Alert.alert("Password field is required.");
+		} else {
+			login(email, password);
+			emptyState();
+		}
+	};
+
+	const handleGoogleLogin = () => {
+		
+	}
+
 	return (
 		<View style={styles.container}>
 			<Image source={require("../assets/logo_text.png")} style={styles.logo} />
 			<FormInput
 				placeholderText='Email'
-				onChange={(userEmail) => {
+				onChangeText={(userEmail) => {
 					setEmail(userEmail);
 				}}
 				iconType='user'
@@ -23,13 +48,13 @@ function LoginScreen({ navigation }) {
 			/>
 			<FormInput
 				placeholderText='Password'
-				onChange={(userPassword) => {
+				onChangeText={(userPassword) => {
 					setPassword(userPassword);
 				}}
 				iconType='lock'
 				secureTextEntry={true}
 			/>
-			<FormButton buttonTitle='Sign In' onPress={() => alert("Sign In Button Clicked")} />
+			<FormButton buttonTitle='Sign In' onPress={() => handlePress()} />
 
 			<TouchableOpacity style={styles.forgotButton} onPress={() => navigation.navigate("Signup")}>
 				<Text style={styles.navButtonText}> Don't have an account? Create Here.</Text>
@@ -39,7 +64,7 @@ function LoginScreen({ navigation }) {
 				btnType='google'
 				color='#de4d41'
 				backgroundColor='#f5e7ea'
-				onPress={() => alert("Google Sign In")}
+				onPress={() => handleGoogleLogin()}
 			/>
 		</View>
 	);
