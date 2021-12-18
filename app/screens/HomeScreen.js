@@ -2,20 +2,14 @@ import React, { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../navigation/AuthProvider";
 
+import { Container } from "../styles/TimelineStyles";
+
 const HomeScreen = () => {
 	return (
-		<View style={styles.container}>
+		<Container>
 			<Text>Welcome Home</Text>
-		</View>
+		</Container>
 	);
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-});

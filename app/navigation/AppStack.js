@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import HomeScreen from "../screens/HomeScreen";
 import AddNoteScreen from "../screens/AddNoteScreen";
 import ProfileScreen from "../screens/ProfileScreen";
@@ -32,9 +32,9 @@ const FeedStack = ({ navigation }) => (
 				},
 				headerRight: () => (
 					<View style={{ marginRight: 10 }}>
-						<FontAwesome5.Button
-							name='plus'
-							size={22}
+						<SimpleLineIcons.Button
+							name='note'
+							size={20}
 							backgroundColor='#fff'
 							color='#2e64e5'
 							onPress={() => navigation.navigate("AddNote")}
@@ -113,24 +113,16 @@ const AppStack = () => {
 			}}
 		>
 			<Tab.Screen
-				name='Home'
+				name='Timeline'
 				component={FeedStack}
 				options={({ route }) => ({
-					tabBarLabel: "Home",
+					tabBarLabel: "Timeline",
 					// tabBarVisible: route.state && route.state.index === 0,
 					tabBarIcon: ({ color, size }) => (
-						<MaterialCommunityIcons name='home-outline' color={color} size={size} />
+						<MaterialCommunityIcons name='timeline-text-outline' color={color} size={size} />
 					),
 					headerShown: false,
 				})}
-			/>
-			<Tab.Screen
-				name='Important'
-				component={FavouriteScreen}
-				options={{
-					// tabBarLabel: 'Home',
-					tabBarIcon: ({ color, size }) => <AntDesign name='staro' color={color} size={size} />,
-				}}
 			/>
 			<Tab.Screen
 				name='Profile'
@@ -138,6 +130,14 @@ const AppStack = () => {
 				options={{
 					// tabBarLabel: 'Home',
 					tabBarIcon: ({ color, size }) => <Ionicons name='person-outline' color={color} size={size} />,
+				}}
+			/>
+			<Tab.Screen
+				name='Important'
+				component={FavouriteScreen}
+				options={{
+					// tabBarLabel: 'Home',
+					tabBarIcon: ({ color, size }) => <AntDesign name='staro' color={color} size={size} />,
 				}}
 			/>
 		</Tab.Navigator>
