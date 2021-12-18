@@ -1,20 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { InputField, InputWrapper } from "../styles/AddPost";
 
 const AddNoteScreen = () => {
 	return (
-		<View style={styles.container}>
-			<Text>Add Note</Text>
-		</View>
+		<InputWrapper>
+			<InputField placeholder='Keep in memory!!' multiline numberofLines={3} />
+		</InputWrapper>
 	);
 };
 
 export default AddNoteScreen;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-});
