@@ -5,12 +5,14 @@ import FormButton from "../components/FormButton";
 import FormInput from "../components/FormInput";
 import SocialButton from "../components/SocialButton";
 import { AuthContext } from "../navigation/AuthProvider";
+import * as GoogleAuthentication from "expo-google-app-auth";
+import firebase from "firebase";
 
 function LoginScreen({ navigation }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const { login } = useContext(AuthContext);
+	const { login, setUser } = useContext(AuthContext);
 
 	const emptyState = () => {
 		setEmail("");
@@ -29,9 +31,26 @@ function LoginScreen({ navigation }) {
 		}
 	};
 
-	const handleGoogleLogin = () => {
-		
-	}
+	const signInWithGoogle = () => {
+		GoogleAuthentication.logInAsync({
+			androidClientId: "985032517632-famb4oh1kf3i1e1tbj1s15gd047r8u6v.apps.googleusercontent.com",
+			iosClientId: "985032517632-jv9ng6ib5217ml6ao6schdnfpeagbavk.apps.googleusercontent.com",
+			scopes: ["profile", "email"],
+		})
+			.then((res) => {
+				if (res?.type === "success") {
+					console.log(res?.user);
+					setUser(res.user);
+					const { idToken, accessToken } = res;
+					const credential = firebase.auth.GoogleAuthProvider.credential(idToken, accessToken);
+					return firebase.auth().signInWithCredential(credential);
+				}
+				return Promise.reject();
+			})
+			.catch((error) => {
+				console.log("Error", error);
+			});
+	};
 
 	return (
 		<View style={styles.container}>
@@ -64,7 +83,7 @@ function LoginScreen({ navigation }) {
 				btnType='google'
 				color='#de4d41'
 				backgroundColor='#f5e7ea'
-				onPress={() => handleGoogleLogin()}
+				onPress={() => signInWithGoogle()}
 			/>
 		</View>
 	);

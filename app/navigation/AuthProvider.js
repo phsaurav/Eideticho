@@ -31,13 +31,6 @@ export const AuthProvider = ({ children }) => {
 						console.log(err);
 					}
 				},
-				googleLogin: async() => {
-					try {
-						await firebase.auth().;
-					} catch (err) {
-						console.log(err);
-					}
-				}
 			}}
 		>
 			{children}
