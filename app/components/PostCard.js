@@ -28,7 +28,7 @@ const PostCard = ({ item }) => {
 				</UserInfoText>
 			</UserInfo>
 			<PostText>{item.post}</PostText>
-			<PostImg source={item?.postImg} />
+			<PostImg source={{ uri: item?.postImg }} />
 			<InteractionWrapper>
 				<Interaction active>
 					<AntDesign name={starIcon} size={22} color={starIconColor} />

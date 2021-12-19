@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../navigation/AuthProvider";
 import AntDesign from "react-native-vector-icons/AntDesign";
-
+import * as firebase from "firebase";
+import "firebase/firestore";
+import "firebase/storage";
 import { Container } from "../styles/TimelineStyles";
 import PostCard from "../components/PostCard";
 import { FlatList } from "react-native-gesture-handler";
@@ -65,11 +67,60 @@ const Posts = [
 	},
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation, postLength, setPostLength }) => {
+	const [posts, setPosts] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	const fetchPosts = async () => {
+		try {
+			const list = [];
+
+			await firebase
+				.firestore()
+				.collection("posts")
+				.orderBy("postTime", "desc")
+				.get()
+				.then((querySnapshot) => {
+					console.log("Total Posts: ", querySnapshot.size);
+
+					querySnapshot.forEach((doc) => {
+						// console.log(doc);
+						const { userId, post, postImg, postTime, liked } = doc.data();
+						list.push({
+							id: doc.id,
+							userId,
+							userName: "Test Name",
+							userImg:
+								"https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg",
+							postTime: postTime.toDate().toLocaleTimeString(),
+							post,
+							postImg,
+							liked: liked,
+						});
+					});
+				});
+
+			setPosts(list);
+
+			if (loading) {
+				setLoading(false);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
+		fetchPosts();
+	}, []);
+	useEffect(() => {
+		console.log("Posts: ", posts);
+	}, [posts]);
+
 	return (
 		<Container>
 			<FlatList
-				data={Posts}
+				data={posts}
 				renderItem={({ item }) => <PostCard item={item} />}
 				keyExtractor={(item) => item.id}
 				showsVerticalScrollIndicator={false}
