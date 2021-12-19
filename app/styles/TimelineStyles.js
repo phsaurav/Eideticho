@@ -36,6 +36,7 @@ export const UserInfoText = styled.View`
 export const UserName = styled.Text`
 	font-size: 14px;
 	font-weight: bold;
+	margin-left: -10px;
 `;
 
 export const PostTime = styled.Text`

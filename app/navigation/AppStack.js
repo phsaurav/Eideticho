@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -10,6 +10,7 @@ import HomeScreen from "../screens/HomeScreen";
 import AddNoteScreen from "../screens/AddNoteScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import FavouriteScreen from "../screens/FavouriteScreen";
+import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const { Navigator, Screen } = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,15 +32,30 @@ const FeedStack = ({ navigation }) => (
 					elevation: 0,
 				},
 				headerRight: () => (
-					<View style={{ marginRight: 10 }}>
-						<SimpleLineIcons.Button
-							name='note'
-							size={20}
-							backgroundColor='#fff'
-							color='#2e64e5'
-							onPress={() => navigation.navigate("AddNote")}
-						/>
-					</View>
+					<TouchableOpacity
+						style={{
+							marginRight: 10,
+							flex: 1,
+							flexDirection: "row",
+							alignItems: "center",
+							backgroundColor: "#2e64e515",
+							borderRadius: 20,
+							paddingHorizontal: 5,
+						}}
+						onPress={() => navigation.navigate("AddNote")}
+					>
+						<SimpleLineIcons.Button name='note' size={16} backgroundColor='transparent' color='#2e64e5' />
+						<Text
+							style={{
+								marginLeft: -10,
+								color: "#2e64e5",
+								fontSize: 16,
+								marginRight: 10,
+							}}
+						>
+							Add
+						</Text>
+					</TouchableOpacity>
 				),
 			}}
 		/>

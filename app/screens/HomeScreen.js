@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../navigation/AuthProvider";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { useIsFocused } from "@react-navigation/native";
 import * as firebase from "firebase";
 import "firebase/firestore";
 import "firebase/storage";
@@ -67,9 +68,12 @@ const Posts = [
 	},
 ];
 
-const HomeScreen = ({ navigation, postLength, setPostLength }) => {
+const HomeScreen = ({ navigation }) => {
+	const [postLength, setPostLength] = useState(0);
 	const [posts, setPosts] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const { user } = useContext(AuthContext);
+	const isFocused = useIsFocused();
 
 	const fetchPosts = async () => {
 		try {
@@ -86,17 +90,19 @@ const HomeScreen = ({ navigation, postLength, setPostLength }) => {
 					querySnapshot.forEach((doc) => {
 						// console.log(doc);
 						const { userId, post, postImg, postTime, liked } = doc.data();
-						list.push({
-							id: doc.id,
-							userId,
-							userName: "Test Name",
-							userImg:
-								"https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg",
-							postTime: postTime.toDate().toLocaleTimeString(),
-							post,
-							postImg,
-							liked: liked,
-						});
+						if (userId === user.uid) {
+							list.push({
+								id: doc.id,
+								userId,
+								userName: "Test Name",
+								userImg:
+									"https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg",
+								postTime: postTime.toDate().toLocaleTimeString(),
+								post,
+								postImg,
+								liked: liked,
+							});
+						}
 					});
 				});
 
@@ -112,7 +118,7 @@ const HomeScreen = ({ navigation, postLength, setPostLength }) => {
 
 	useEffect(() => {
 		fetchPosts();
-	}, []);
+	}, [isFocused]);
 	useEffect(() => {
 		console.log("Posts: ", posts);
 	}, [posts]);

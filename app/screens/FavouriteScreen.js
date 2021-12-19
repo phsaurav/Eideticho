@@ -5,7 +5,8 @@ import { AuthContext } from "../navigation/AuthProvider";
 const FavouriteScreen = () => {
 	return (
 		<View style={styles.container}>
-			<Text>Important Notes</Text>
+			<Text>Important Notes </Text>
+			<Text>Coming Soon..</Text>
 		</View>
 	);
 };

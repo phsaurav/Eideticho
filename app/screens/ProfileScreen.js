@@ -7,7 +7,7 @@ const ProfileScreen = () => {
 	const { user, logout } = useContext(AuthContext);
 	return (
 		<View style={styles.container}>
-			<Text>Welcome {user.email}</Text>
+			<Text style={styles.email}>{user.email}</Text>
 			<FormButton buttonTitle='Logout' onPress={() => logout()} />
 		</View>
 	);
@@ -20,5 +20,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
+		padding: 20,
+	},
+	email: {
+		fontSize: 25,
+		paddingVertical: 10,
 	},
 });

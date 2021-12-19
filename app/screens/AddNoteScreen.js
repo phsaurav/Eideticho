@@ -9,8 +9,8 @@ import "firebase/firestore";
 import "firebase/storage";
 import { AuthContext } from "../navigation/AuthProvider";
 
-const AddNoteScreen = () => {
-	const { user, logout } = useContext(AuthContext);
+const AddNoteScreen = ({ navigation }) => {
+	const { user } = useContext(AuthContext);
 
 	const [image, setImage] = useState(null);
 	const [uploading, setUploading] = useState(false);
@@ -25,7 +25,8 @@ const AddNoteScreen = () => {
 				mediaTypes: ImagePicker.MediaTypeOptions.Images,
 				allowsEditing: true,
 				aspect: [4, 3],
-				quality: 0.5,
+				quality: 0.1,
+				base64: true,
 			});
 			console.log(result);
 
@@ -40,7 +41,8 @@ const AddNoteScreen = () => {
 			mediaTypes: ImagePicker.MediaTypeOptions.All,
 			allowsEditing: true,
 			aspect: [4, 3],
-			quality: 0.5,
+			quality: 0.1,
+			base64: true,
 		});
 		console.log(result);
 
@@ -64,9 +66,10 @@ const AddNoteScreen = () => {
 				liked: false,
 			})
 			.then(() => {
-				console.log("Post Added!");
-				Alert.alert("Post published!", "Your post has been published Successfully!");
 				setPost(null);
+				console.log("Post Added!");
+				Alert.alert("Memory Added!", "Your memory is added successfully to timeline!");
+				navigation.navigate("Eideticho");
 			})
 			.catch((error) => {
 				console.log("Something went wrong with added post to firestore.", error);
@@ -118,11 +121,6 @@ const AddNoteScreen = () => {
 
 			setUploading(false);
 			setImage(null);
-
-			// Alert.alert(
-			//   'Image uploaded!',
-			//   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
-			// );
 			return url;
 		} catch (e) {
 			console.log(e);
@@ -148,7 +146,7 @@ const AddNoteScreen = () => {
 				) : (
 					image && (
 						<SubmitBtn onPress={submitPost}>
-							<SubmitBtnText>Post</SubmitBtnText>
+							<SubmitBtnText>Add</SubmitBtnText>
 						</SubmitBtn>
 					)
 				)}

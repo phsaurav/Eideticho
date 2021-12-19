@@ -11,7 +11,7 @@ import firebase from "firebase";
 function LoginScreen({ navigation }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
+	const [error, setError] = useState("");
 	const { login, setUser } = useContext(AuthContext);
 
 	const emptyState = () => {
@@ -43,12 +43,14 @@ function LoginScreen({ navigation }) {
 					setUser(res.user);
 					const { idToken, accessToken } = res;
 					const credential = firebase.auth.GoogleAuthProvider.credential(idToken, accessToken);
+					setError("");
 					return firebase.auth().signInWithCredential(credential);
 				}
 				return Promise.reject();
 			})
 			.catch((error) => {
 				console.log("Error", error);
+				setError(error);
 			});
 	};
 
@@ -85,6 +87,7 @@ function LoginScreen({ navigation }) {
 				backgroundColor='#f5e7ea'
 				onPress={() => signInWithGoogle()}
 			/>
+			<Text style={{ color: "red", marginTop: 10 }}>{error}</Text>
 		</View>
 	);
 }
