@@ -25,7 +25,7 @@ const FeedStack = ({ navigation }) => (
 
 				headerTitleStyle: {
 					color: "#2e64e5",
-					fontSize: 18,
+					fontSize: 25,
 				},
 				headerStyle: {
 					shadowColor: "#fff",
@@ -34,20 +34,21 @@ const FeedStack = ({ navigation }) => (
 				headerRight: () => (
 					<TouchableOpacity
 						style={{
-							marginRight: 10,
-							flex: 1,
+							marginRight: 20,
 							flexDirection: "row",
 							alignItems: "center",
 							backgroundColor: "#2e64e515",
 							borderRadius: 20,
-							paddingHorizontal: 5,
+							paddingLeft: 15,
+							paddingRight: 3,
+							height: 35,
 						}}
 						onPress={() => navigation.navigate("AddNote")}
 					>
-						<SimpleLineIcons.Button name='note' size={16} backgroundColor='transparent' color='#2e64e5' />
+						<SimpleLineIcons name='note' size={16} color='#2e64e5' />
 						<Text
 							style={{
-								marginLeft: -10,
+								marginLeft: 5,
 								color: "#2e64e5",
 								fontSize: 16,
 								marginRight: 10,

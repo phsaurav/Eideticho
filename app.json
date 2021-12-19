@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Eideticho",
-    "slug": "Eideticho",
+    "slug": "eideticho",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
@@ -29,6 +29,8 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
-    }
+    },
+    "description": "Eideticho\nAn Echo of your thoughts.\nEideticho is a simple app that acts as your Eidetic or photographic memory. Many of us have a problem with remembering things. We frequently forget things so we use different means to store important information like a notebook, journal. \nFor this purpose, there are also many note-taking apps and complex tools which have a lot of features and functionality. But this excessive feature makes these apps really heavy and hard to use. Most of the functionality is not needed for a day-to-day user and it is really hard to recall important memory from a mess of notes. So for many, these app doesn't provide any benefit and they stop using them after some time.\nEideticho solves this issue. It is really simple to use an app that acts as a photographic memory. In this app, you can take a picture of the thing\nyou want to remember with one click and attach a simple note with the picture. The picture note will be stored in a simple list timeline of your\nday. So it is super easy to find any particular memory you want to remember.\n",
+    "githubUrl": "https://github.com/phsaurav/Eideticho"
   }
 }
