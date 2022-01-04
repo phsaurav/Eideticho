@@ -1,7 +1,7 @@
 # Eideticho
 An echo of your memories!
 
-### [Expo Live Link](https://expo.dev/@phsaurav/eideticho)
+### Live App Link: [Expo Live Link](https://expo.dev/@phsaurav/eideticho)
 
 Eideticho is a simple app that acts as your Eidetic or photographic memory.
 
