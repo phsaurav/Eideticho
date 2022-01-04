@@ -38,6 +38,7 @@ Eideticho solves this issue. It is really simple to use an app that acts as a ph
 ![addgalary2](https://user-images.githubusercontent.com/30824536/148074636-071db3d6-ddfa-45d5-9fc3-6b1ad70a19ad.png)
 
 ### Add From Photo
-![addnote](https://user-images.githubusercontent.com/30824536/148074962-248b8b82-3918-4b48-8a58-eae8a8eabca4.png)
+
+![addphoto](https://user-images.githubusercontent.com/30824536/148075295-e80a6e2b-5c39-4e1c-963b-b5dea4b2f4f5.png)
 
 ![addphoto2](https://user-images.githubusercontent.com/30824536/148074986-d8f613c9-f5d5-4df1-9ec9-d826f4b6d802.png)
