@@ -20,4 +20,24 @@ Eideticho solves this issue. It is really simple to use an app that acts as a ph
 * Option to forward a memory to the next day.
 
 ### Onboarding UI
-![Onboarding UI](https://i.ibb.co/Dwhb45V/Onboarding.png)
+![Onboarding](https://user-images.githubusercontent.com/30824536/148074059-6cedadd6-b68e-4d27-a73a-afcbc0b4faf2.png)
+
+### Sign In UI
+![login](https://user-images.githubusercontent.com/30824536/148074229-2c754160-6b04-49ae-b55f-0df9b85c05a7.png)
+
+### Bottom Toolbar
+![bottomtab](https://user-images.githubusercontent.com/30824536/148074333-578ee7ce-4a77-477b-879f-b8a443dd8fa4.png)
+
+### Add Note
+![addnote](https://user-images.githubusercontent.com/30824536/148074538-7112fbae-5688-4e12-8828-54cc63ac9027.png)
+
+### Add From Galary
+
+![addgalary1](https://user-images.githubusercontent.com/30824536/148074628-ed399946-5c57-4f55-9ac1-1db412396a79.png)
+
+![addgalary2](https://user-images.githubusercontent.com/30824536/148074636-071db3d6-ddfa-45d5-9fc3-6b1ad70a19ad.png)
+
+### Add From Photo
+![addnote](https://user-images.githubusercontent.com/30824536/148074962-248b8b82-3918-4b48-8a58-eae8a8eabca4.png)
+
+![addphoto2](https://user-images.githubusercontent.com/30824536/148074986-d8f613c9-f5d5-4df1-9ec9-d826f4b6d802.png)
